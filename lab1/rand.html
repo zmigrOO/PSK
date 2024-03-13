@@ -7,19 +7,32 @@
     <title>Random Numbers</title>
 </head>
 <body>
-    <h1>Random Number Generator</h1>
-    <h4>VonNeumann's method</h4>
-    <input type="number" value="1211" id="seed" placeholder="Seed">  
-    <input type="number" value="10" id="iterations" placeholder="Iterations"><br>
-    <button onclick="random_vonneumann(document.querySelector('#random'), document.querySelector('#seed').value, document.querySelector('#iterations').value)">Generate</button><br>
-    <h4>Lehmer's method</h4>
-    <input type="number" value="121" id="module" placeholder="Module">
-    <input type="number" value="62345" id="multiplier" placeholder="Multiplier">
-    <input type="number" value=".2" id="seed_l" placeholder="Seed"><br>
-    <button onclick="random_lehmer(document.querySelector('#random'), document.querySelector('#module').value, document.querySelector('#multiplier').value, document.querySelector('#seed_l').value)">Generate data</button>
-    <button onclick="random_lehmer_gr(document.querySelector('#random'), document.querySelector('#module').value, document.querySelector('#multiplier').value, document.querySelector('#seed_l').value)">Generate plot</button><br>
-    <h4>Pi approximation</h4>
-    <button onclick="pi_montecarlo(1000, document.querySelector('#random'))">Generate Pi</button>
-    <div id="random" style="position: relative;width: 100%;color: darkgrey;"></div>
+    <div id="random" style="position: absolute;height: 100%;aspect-ratio: 1/1;top: 0px; right: 0px;z-index: 0;overflow: scroll;">
+    </div>
+    <div style="position: relative;z-index: 1;width: 800px;">
+        <h1>Random Number Generator</h1>
+        <fieldset>
+            <legend>VonNeumann's method</legend>
+            <input type="number" value="1211" id="seed" placeholder="Seed">  
+            <input type="number" value="10" id="iterations" placeholder="Iterations"><br>
+            <button onclick="random_vonneumann(document.querySelector('#random'), document.querySelector('#seed').value, document.querySelector('#iterations').value)">Generate</button><br>
+        </fieldset>
+        <fieldset>
+            <legend>Lehmer's method</legend>
+            <input type="number" value="121" id="module" placeholder="Module">
+            <input type="number" value="62345" id="multiplier" placeholder="Multiplier">
+            <input type="number" step=".05" value=".2" id="seed_l" placeholder="Seed"><br>
+            <button onclick="random_lehmer(document.querySelector('#random'), document.querySelector('#module').value, document.querySelector('#multiplier').value, document.querySelector('#seed_l').value)">Generate data</button>
+            <button onclick="random_lehmer_gr(document.querySelector('#random'), document.querySelector('#module').value, document.querySelector('#multiplier').value, document.querySelector('#seed_l').value)">Generate plot</button><br>
+        </fieldset>
+        <fieldset>
+            <legend>Monte Carlo methhod</legend>
+            <input type="number" step="1000" value="1000" id="points" placeholder="Points">
+            <button onclick="pi_montecarlo(document.querySelector('#points').value, document.querySelector('#random'))">Generate Pi</button>
+        </fieldset>
+</div>
 </body>
+<script>
+
+</script>
 </html>
