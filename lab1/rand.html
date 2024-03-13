@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="random.js"></script>
+    <title>Random Numbers</title>
+</head>
+<body>
+    <h1>Random Number Generator</h1>
+    <input type="number" id="seed" placeholder="Seed">  
+    <button onclick="random_vonneumann(document.querySelector('#random'), document.querySelector('#seed').value, 10)">Generate Random Numbers with von Neumann's method</button><br>
+    <button onclick="random_lehmer(document.querySelector('#random'))">Generate Random Numbers with Lehmer's method</button><br>
+    <button onclick="random_lehmer_gr(document.querySelector('#random'))">Generate Random Numbers with Lehmer's method</button><br>
+    <button onclick="pi_montecarlo(1000, document.querySelector('#random'))">Generate Pi</button>
+    <div id="random" style="position: relative;width: 100%;color: darkgrey;"></div>
+</body>
+</html>
