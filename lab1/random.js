@@ -1,14 +1,10 @@
-function random_lehmer(x) {
+function random_lehmer(x, m, a, seed) {
     x.innerHTML = "";
     let arr = [];
-    let a = 62345;
-    let m = 121;
-    let seed = .2;
     let i = 0;
     while (true) {
         seed = (a * seed) % m;
         if (arr.includes(seed)) {
-            // sum of all numbers in the array / i
             x.innerHTML += "Average = " + (arr.reduce((a, b) => a + b, 0) / i) / m + "<br>";
             x.innerHTML += "Deviation = " + (1.0-((arr.reduce((a, b) => a + b, 0) / i) / m)/.5) + "<br>";
             x.innerHTML += "Variation = " + variation(arr, m) + "<br>";
@@ -22,14 +18,14 @@ function random_lehmer(x) {
         i++;
     } 
 }
-function random_lehmer_gr(x) {
+function random_lehmer_gr(x, m, a, seed) {
     x.innerHTML = "";
     let plot = document.createElement("div");
     plot.style.width = "100%";
     plot.style.position = "absolute";
     plot.style.top = "0";
     let divider = document.createElement("div");
-    divider.style.width = "1px";
+    divider.style.width = "1px";62345
     divider.style.height = "100%";
     divider.style.position = "absolute";
     divider.style.left = "50%";
@@ -37,23 +33,20 @@ function random_lehmer_gr(x) {
     divider.innerHTML = "0.5";
     plot.appendChild(divider);
     let arr = [];
-    let a = 62345;
-    let m = 121;
-    let seed = .2;
     let i = 0;
     while (true) {
         seed = (a * seed) % m;
         if (arr.includes(seed)) {
             // sum of all numbers in the array / i
             x.innerHTML += "Average = " + (arr.reduce((a, b) => a + b, 0) / i) / m + "<br>";
-            let Variation = document.createElement("div");
-            Variation.style.width = "1px";
-            Variation.style.height = "100%";
-            Variation.style.position = "absolute";
-            Variation.style.top = "0";
-            Variation.style.left = 100*(arr.reduce((a, b) => a + b, 0) / i) / m + "%";
-            Variation.style.borderLeft = "1px solid red";
-            plot.appendChild(Variation);
+            let avg = document.createElement("div");
+            avg.style.width = "1px";
+            avg.style.height = "100%";
+            avg.style.position = "absolute";
+            avg.style.top = "0";
+            avg.style.left = 100*(arr.reduce((a, b) => a + b, 0) / i) / m + "%";
+            avg.style.borderLeft = "1px solid red";
+            plot.appendChild(avg);
             x.innerHTML += "Deviation = " + (1.0-((arr.reduce((a, b) => a + b, 0) / i) / m)/.5) + "<br>";
             x.innerHTML += "Variation = " + variation(arr, m) + "<br>";
             x.innerHTML += "Deviation = " + (1.0-(variation(arr, m)/(1/12))) + "<br>";
