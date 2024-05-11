@@ -32,7 +32,7 @@ function simulateDiscreteEvent() {
 
     return capitalData;
 }
-function simulateMultiple(n) {
+function simulateMultipleDiscreteEvents(n) {
     let simulationSuccessRate = [];
     let bestSimulation = 0;
     let worstSimulation = [];
