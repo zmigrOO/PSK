@@ -247,8 +247,7 @@ function pi_montecarlo(n, p) {
         div.style.width = "10px";
         div.style.height = "10px";
         div.style.left = 50*x+50 + "%";
-        div.style.top = 50*y+50 + "%";
-        div.style.backgroundColor = "gray";
+        div.style.top = 50*y+50 + "%";        div.style.backgroundColor = "gray";
         div.style.opacity = "1";
         div.style.borderRadius = "50%";
         if (x * x + y * y < 1) {
@@ -271,3 +270,18 @@ function pi_montecarlo(n, p) {
     plot.appendChild(pi);
     p.appendChild(plot);
 }
+function generatePoisson(lambda) {
+    var L = Math.exp(-lambda);
+    var k = 0;
+    var p = 1;
+
+    do {
+        k++;
+        var u = Math.random();
+        p *= u;
+    } while (p > L);
+
+    console.log(k - 1);
+}
+
+

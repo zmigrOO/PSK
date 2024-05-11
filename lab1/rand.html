@@ -30,9 +30,18 @@
             <input type="number" step="1000" value="1000" id="points" placeholder="Points"><br>
             <button onclick="pi_montecarlo(document.querySelector('#points').value, document.querySelector('#random'))">Generate Pi</button>
         </fieldset>
+        <fieldset>
+            <legend>Poisson's </legend>
+            <input type="number" step="1" value="2" id="k" placeholder="lambda"><br>
+            <input type="number" step="1" value="2" id="lambda" placeholder="lambda"><br>
+            <button onclick="generatePoisson(document.querySelector('#lambda').value)">Generate Poisson</button>
+        </fieldset>
 </div>
 </body>
-<script>
 
-</script>
 </html>
+<style>
+    fieldset, legend{background-color: aliceblue;}
+    legend{border: 1px gray solid;
+    border-radius: 1rem;}
+</style>

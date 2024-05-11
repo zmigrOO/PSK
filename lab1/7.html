@@ -1,0 +1,11 @@
+<script>
+    let seven = 0;
+    for (let i = 100; i < 1000; i+=2) {
+        // check if .tostring has only one 7
+        if (i.toString().split('7').length === 2) {
+            seven++;
+            console.log(i);
+        }
+    }
+    console.log(seven);
+</script>
