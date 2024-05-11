@@ -56,6 +56,7 @@
       document.querySelector('#n').value = n;
       var data = generatePoissonDistribution(lambda, n);
       var ctx = document.getElementById('poissonChart').getContext('2d');
+      
       var myChart = new Chart(ctx, {
         type: 'bar',
         data: {
