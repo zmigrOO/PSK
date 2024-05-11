@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discrete Event Simulation</title>
+    <script src="chart.js"></script>
+    <script src="scripts.js"></script>
+</head>
+
+<body>
+    <form action="" method="get">
+        <fieldset>
+            <legend>Discrete Event Simulation</legend>
+            <label for="sims">Number of simulations:</label>
+            <input type="number" value="1000" name="sims" id="sims">
+            <button type="submit">Simulate</button>
+            <div id="results" style="float: right;"></div>
+        </fieldset>
+    </form>
+    <canvas id="capitalChart" width="800" height="400"></canvas>
+</body>
+
+</html>
+<script>
+    if (new URLSearchParams(window.location.search).get('sims')) {
+        const sims = document.querySelector('#sims').value = parseInt(new URLSearchParams(window.location.search).get('sims'));
+        const { bestSimulation, worstSimulation, simulationSuccessRate } = simulateMultiple(sims);
+        document.querySelector('#results').innerHTML = `Success Rate: ${(simulationSuccessRate / sims * 100).toFixed(2)}% (<span style="color:green;">${simulationSuccessRate}</span> successful, <span style="color:red;">${sims - simulationSuccessRate}</span> unsuccessful)`;
+        // Display capital data on the chart
+        const ctx = document.getElementById('capitalChart').getContext('2d');
+        const chart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: Array.from({ length: 365 }, (_, i) => i + 1),
+                datasets: [{
+                    label: 'Best Simulation',
+                    data: bestSimulation,
+                    fill: false,
+                    borderColor: 'green',
+                    borderWidth: 1,
+                    pointRadius: 0
+                }, {
+                    label: 'Worst Simulation',
+                    data: worstSimulation,
+                    fill: false,
+                    borderColor: 'red',
+                    borderWidth: 1,
+                    pointRadius: 0
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        min: 0, // Add this line to set the minimum value of the y-axis to 0
+                        title: {
+                            display: true,
+                            text: 'Capital ($)'
+                        }
+                    },
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Days'
+                        }
+                    }
+                }
+            }
+        });
+    }
+</script>

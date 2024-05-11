@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Poisson Distribution</title>
+  <script src="chart.js"></script>
+  <script src="scripts.js"></script>
+</head>
+
+<body>
+  <form method="get">
+    <fieldset>
+      <legend>Poisson Distribution</legend>
+      <label for="lambda">λ (lambda):</label>
+      <input type="number" name="lambda" id="lambda" value="2">
+      <label for="n">Number of samples:</label>
+      <input type="number" name="n" id="n" value="1000">
+      <button type="submit">Generate</button>
+    </fieldset>
+  </form>
+  <canvas id="poissonChart" width="800" height="400"></canvas>
+</body>
+
+</html>
+<script>
+  if (new URLSearchParams(window.location.search).get('n') && new URLSearchParams(window.location.search).get('lambda')) {
+    var n = parseInt(new URLSearchParams(window.location.search).get('n'));
+    var lambda = parseInt(new URLSearchParams(window.location.search).get('lambda'));
+    document.querySelector('#lambda').value = lambda;
+    document.querySelector('#n').value = n;
+    var data = generatePoissonDistribution(lambda, n);
+    var ctx = document.getElementById('poissonChart').getContext('2d');
+    var myChart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: Array.from({ length: data.length }, (_, i) => i),
+        datasets: [{
+          label: 'Poisson Distribution (λ = ' + lambda + ')',
+          data: data,
+          backgroundColor: 'rgba(54, 162, 235, 0.5)',
+          borderColor: 'rgba(54, 162, 235, 1)',
+          borderWidth: 1
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+  }
+</script>
